@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>.net-sdk by Tiger66639</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>.net-sdk</h1>
+        <h2>A .NET SDK for the DreamFactory REST API</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/Tiger66639/.net-sdk/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/Tiger66639/.net-sdk/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/Tiger66639/.net-sdk" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <p><a href="https://travis-ci.org/dreamfactorysoftware/.net-sdk"><img src="https://travis-ci.org/dreamfactorysoftware/.net-sdk.svg?branch=develop" alt="Build Status"></a>
+<a href="http://www.nuget.org/packages/DreamFactoryNet/"><img src="https://img.shields.io/nuget/v/DreamFactoryNet.svg?style=flat" alt="NuGet"></a></p>
+
+<h1>
+<a id="net-sdk-for-the-dreamfactory-rest-api" class="anchor" href="#net-sdk-for-the-dreamfactory-rest-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>.NET SDK for the DreamFactory REST API</h1>
+
+<p>The .NET SDK provides classes and interfaces to access the DreamFactory REST API.</p>
+
+<h2>
+<a id="quick-links" class="anchor" href="#quick-links" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Quick links</h2>
+
+<ul>
+<li><a href="#solution-structure">Solution structure</a></li>
+<li>
+<a href="#distribution">Distribution</a>
+
+<ul>
+<li><a href="#dependencies">Dependencies</a></li>
+<li><a href="#supported-platforms">Supported platforms</a></li>
+</ul>
+</li>
+<li>
+<a href="#demo">Demo</a>
+
+<ul>
+<li><a href="#running-the-address-book-demo">Running the Address Book demo</a></li>
+<li><a href="#running-the-console-demo">Running the Console Demo</a></li>
+</ul>
+</li>
+<li>
+<a href="#api">API overview</a>
+
+<ul>
+<li><a href="#user-api">User</a></li>
+<li><a href="#customsettings-api">CustomSettings</a></li>
+<li><a href="#files-api">Files</a></li>
+<li><a href="#database-api">Database</a></li>
+<li><a href="#email-api">Email</a></li>
+<li><a href="#system-api">System</a></li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="solution-structure" class="anchor" href="#solution-structure" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Solution structure</h2>
+
+<p>The Visual Studio solution has these projects:</p>
+
+<ul>
+<li>DreamFactory       : the API library</li>
+<li>DreamFactory.AddressBook : ASP.NET MVC web app demonstrating API usage in a real world example.</li>
+<li>DreamFactory.Demo  : console program demonstrating API usage (with some integration tests)</li>
+<li>DreamFactory.Tests : Unit Tests (MSTest)</li>
+</ul>
+
+<p>The solution folder also contains:</p>
+
+<ul>
+<li>ReSharper settings file (team-shared),</li>
+<li>NuGet package specification file,</li>
+<li>this README file.</li>
+</ul>
+
+<h2>
+<a id="distribution" class="anchor" href="#distribution" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Distribution</h2>
+
+<p>The package can be either installed from <a href="https://www.nuget.org/packages/DreamFactoryNet">nuget.org</a> or simply built from the source code with Visual Studio.</p>
+
+<div class="highlight highlight-source-powershell"><pre><span class="pl-c1">install-package</span> DreamFactoryNet</pre></div>
+
+<p>Alternatively, check this article on how to manage NuGet packages in Visual Studio:
+<a href="https://docs.nuget.org/consume/installing-nuget">https://docs.nuget.org/consume/installing-nuget</a></p>
+
+<h3>
+<a id="dependencies" class="anchor" href="#dependencies" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Dependencies</h3>
+
+<p>The API has been built with <a href="http://unirest.io/net.html">unirest-net</a> library. Although the underlying HTTP layer can be substituted (see further), it's recommended to use the default implementation.</p>
+
+<p>unirest-net, in turn, has the following dependencies:</p>
+
+<ul>
+<li><code>Microsoft.Bcl (≥ 1.1.10)</code></li>
+<li><code>Microsoft.Bcl.Build (≥ 1.0.21)</code></li>
+<li><code>Microsoft.Bcl.Async (≥ 1.0.168)</code></li>
+<li><code>Newtonsoft.Json (≥ 7.0.1)</code></li>
+<li><code>Microsoft.Net.Http (≥ 2.2.29)</code></li>
+</ul>
+
+<h3>
+<a id="supported-platforms" class="anchor" href="#supported-platforms" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Supported platforms</h3>
+
+<ul>
+<li>ASP.NET 4.5, 4,6</li>
+<li>ASP.NET 5</li>
+<li>Android (Xamarin)</li>
+<li>iOS (Xamarin)</li>
+<li>WinRT and WinRT Phone (Windows 8 and Phone 8.1)</li>
+<li>Windows Phone Silverlight 8</li>
+</ul>
+
+<p>At this moment UAP10.0 (Universal App Platform) is not supported because of the dependancy on unirest-net that doesn't support that target.</p>
+
+<h2>
+<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Demo</h2>
+
+<p>To run the demos, you need to install <a href="https://bitnami.com/stack/dreamfactory">DreamFactory stack</a> version 2.0+ on your machine.</p>
+
+<h3>
+<a id="running-the-address-book-demo" class="anchor" href="#running-the-address-book-demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running the Address Book Demo</h3>
+
+<p>Configure the DreamFactory instance to run the app:</p>
+
+<ul>
+<li>
+<p>Enable <a href="https://en.wikipedia.org/wiki/Cross-origin_resource_sharing">CORS</a> for development purposes.</p>
+
+<ul>
+<li>In the admin console, navigate to the Config tab and click on CORS in the left sidebar.</li>
+<li>Click Add.</li>
+<li>Set Origin, Paths, and Headers to *.</li>
+<li>Set Max Age to 0.</li>
+<li>Allow all HTTP verbs and check the Enabled box.</li>
+<li>Click update when you are done.</li>
+<li>More info on setting up CORS is available <a href="https://github.com/dreamfactorysoftware/dsp-core/wiki/CORs-Configuration">here</a>.</li>
+</ul>
+</li>
+<li>
+<p>Create a default role for new users and enable open registration</p>
+
+<ul>
+<li>In the admin console, click the Roles tab then click Create in the left sidebar.</li>
+<li>Enter a name for the role and check the Active box.</li>
+<li>Go to the Access tab.</li>
+<li>Add a new entry under Service Access (you can make it more restrictive later).
+
+<ul>
+<li>set Service = All</li>
+<li>set Component = *</li>
+<li>check all HTTP verbs under Access</li>
+<li>set Requester = API</li>
+</ul>
+</li>
+<li>Click Create Role.</li>
+<li>Click the Services tab, then edit the user service. Go to Config and enable Allow Open Registration.</li>
+<li>Set the Open Reg Role Id to the name of the role you just created.</li>
+<li>Make sure Open Reg Email Service Id is blank, so that new users can register without email confirmation.</li>
+<li>Save changes.</li>
+</ul>
+</li>
+<li>
+<p>Import the package file for the app.</p>
+
+<ul>
+<li>From the Apps tab in the admin console, click Import and locate add_dotnet.dfpkg file in DreamFactory.AddressBook/App_Package folder. The Address Book package contains the application description, schemas, and sample data.</li>
+<li>Leave storage service and folder blank because this app will be running locally.</li>
+<li>Click the Import button. If successful, your app will appear on the Apps tab. You may have to refresh the page to see your new app in the list.</li>
+</ul>
+</li>
+<li><p>Make sure you have a SQL database service named 'db'. Depending on how you installed DreamFactory you may or may not have a 'db' service already available on your instance. You can add one by going to the Services tab in the admin console and creating a new SQL service. Make sure you set the name to 'db'.</p></li>
+<li><p>The demo also requires a couple of constants to be specified in DreamFactoryContext.cs file located in the DreamFactory.AddressBook project. Open the file and modify the settings to match your setup.</p></li>
+</ul>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">public</span> <span class="pl-k">const</span> <span class="pl-k">string</span> BaseAddress = <span class="pl-s"><span class="pl-pds">"</span>http://localhost:8080<span class="pl-pds">"</span></span>;
+    <span class="pl-k">public</span> <span class="pl-k">const</span> <span class="pl-k">string</span> AppName = <span class="pl-s"><span class="pl-pds">"</span>&lt;app_name&gt;<span class="pl-pds">"</span></span>;
+    <span class="pl-k">public</span> <span class="pl-k">const</span> <span class="pl-k">string</span> AppApiKey= <span class="pl-s"><span class="pl-pds">"</span>&lt;app_api_key&gt;<span class="pl-pds">"</span></span>;
+    <span class="pl-k">public</span> <span class="pl-k">const</span> RestApiVersion Version = RestApiVersion.V2;
+    <span class="pl-k">public</span> <span class="pl-k">const</span> <span class="pl-k">string</span> DbServiceName = <span class="pl-s"><span class="pl-pds">"</span>db<span class="pl-pds">"</span></span>;
+    <span class="pl-k">public</span> <span class="pl-k">const</span> <span class="pl-k">string</span> FileServiceName = <span class="pl-s"><span class="pl-pds">"</span>files<span class="pl-pds">"</span></span>;</pre></div>
+
+<p>You can now run the app by starting the DreamFactory.AddressBook project in your browser. When the app starts up you can register a new user, or log in as an existing user (ex. admin you've set up first time you opened DreamFactory admin app).</p>
+
+<h3>
+<a id="running-the-console-demo" class="anchor" href="#running-the-console-demo" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Running the Console Demo</h3>
+
+<p>Console demo requires a test user to be specified in Program.cs file. Open the file and modify the settings to match your setup.</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">internal</span> <span class="pl-k">const</span> <span class="pl-k">string</span> BaseAddress = <span class="pl-s"><span class="pl-pds">"</span>http://localhost:8080<span class="pl-pds">"</span></span>;
+    <span class="pl-k">internal</span> <span class="pl-k">const</span> <span class="pl-k">string</span> AppName = <span class="pl-s"><span class="pl-pds">"</span>&lt;app_name&gt;<span class="pl-pds">"</span></span>;
+    <span class="pl-k">internal</span> <span class="pl-k">const</span> <span class="pl-k">string</span> AppApiKey = <span class="pl-s"><span class="pl-pds">"</span>&lt;app_api_key&gt;<span class="pl-pds">"</span></span>;
+    <span class="pl-k">internal</span> <span class="pl-k">const</span> <span class="pl-k">string</span> Email = <span class="pl-s"><span class="pl-pds">"</span>&lt;user_email&gt;<span class="pl-pds">"</span></span>;
+    <span class="pl-k">internal</span> <span class="pl-k">const</span> <span class="pl-k">string</span> Password = <span class="pl-s"><span class="pl-pds">"</span>&lt;user_password&gt;<span class="pl-pds">"</span></span>;</pre></div>
+
+<blockquote>
+<p>Note that the test user must have a role which allows any HTTP verbs on any services/resources.</p>
+</blockquote>
+
+<ul>
+<li>Open DreamFactoryNet solution in Visual Studio 2012 or newer;</li>
+<li>Open Program.cs and modify the settings;</li>
+<li>In <em>Solution Explorer</em> window find <em>DreamFactory.Demo</em> project, right-click on it and select <em>Set as StartUp project</em>;</li>
+<li>In Visual Studio main menu, select <em>DEBUG -&gt; Run without debugging</em>;</li>
+<li>A console window will appear with demo output;</li>
+<li>If the demo has been completed successfully, you will see the total number of tests executed. </li>
+</ul>
+
+<h2>
+<a id="api" class="anchor" href="#api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>API</h2>
+
+<h3>
+<a id="basics" class="anchor" href="#basics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Basics</h3>
+
+<p>The API provides the following functions:</p>
+
+<ol>
+<li>Simple HTTP API, for making arbitrary HTTP requests;</li>
+<li>DreamFactory API (closely matching the Swagger definition),</li>
+<li>Various extensions and builders to simplify managing DreamFactory models.</li>
+</ol>
+
+<p>All network-related API calls are asynchronous, they all have <code>Async</code> suffix.
+The IO-bound calls (HTTP request and stream IO) have <code>ConfigureAwait(false)</code>.</p>
+
+<h3>
+<a id="errors-handling" class="anchor" href="#errors-handling" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Errors handling</h3>
+
+<ul>
+<li>On wrong arguments (preconditions), expect <code>ArgumentException</code> to be thrown.</li>
+<li>
+<p>On Bad HTTP status codes, expect <code>DreamFactoryException</code> to be thrown.</p>
+
+<blockquote>
+<p><code>DreamFactoryException</code> is normally supplied with a reasonable message provided by DreamFactory server, unless it fails with an HTML page returned with the response.</p>
+</blockquote>
+</li>
+<li>
+<p>On content serialization errors (JSON by default), expect Json.NET exceptions to be thrown.</p>
+
+<blockquote>
+<p>Serialization may fail if returned objects do not match the strongly-typed entities defined with the API.
+This may happen in particular when DreamFactory services change their contract in a breaking way.   </p>
+</blockquote>
+</li>
+</ul>
+
+<h3>
+<a id="http-api-overview" class="anchor" href="#http-api-overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>HTTP API overview</h3>
+
+<p>Regular users would not deal with this API subset unless they have outstanding needs to perform advanced queries.
+However, it is very likely that these users will step down this API while debugging, therefore it is recommended to know the basics.</p>
+
+<p>HTTP layer is defined with the following interfaces:</p>
+
+<ul>
+<li>
+<code>IHttpFacade</code> with the single method <code>SendAsync()</code>,</li>
+<li>
+<code>IHttpRequest</code> representing an HTTP request,</li>
+<li>
+<code>IHttpResponse</code> representing an HTTP response,</li>
+</ul>
+
+<p>The SDK comes with unirest-net implementation of <code>IHttpFacade</code> - the <code>UnirestHttpFacade</code> class. A user can define its own implementation to use it with DreamFactory API. Providing a custom <code>IHttpFacade</code> instance could be useful for mocking purposes and IoC. </p>
+
+<p><code>IHttpRequest</code> supports HTTP tunneling, by providing <code>SetTunneling(HttpMethod)</code> function. This function modifies the request instance in according with the tunneling feature supported by DreamFactory.</p>
+
+<p>Here is an <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/HttpDemo.cs">example</a>:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-k">string</span> url = <span class="pl-s"><span class="pl-pds">"</span>https://www.random.org/cgi-bin/randbyte?nbytes=16&amp;format=h<span class="pl-pds">"</span></span>;
+    IHttpRequest request = <span class="pl-k">new</span> HttpRequest(HttpMethod.Get, url);
+    IHttpFacade httpFacade = <span class="pl-k">new</span> UnirestHttpFacade();
+    IHttpResponse response = <span class="pl-k">await</span> httpFacade.SendAsync(request);
+    Console.WriteLine(<span class="pl-s"><span class="pl-pds">"</span>Response CODE = {0}, BODY = {1}<span class="pl-pds">"</span></span>, response.Code, response.Body);</pre></div>
+
+<h3>
+<a id="dreamfactory-api-overview" class="anchor" href="#dreamfactory-api-overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>DreamFactory API overview</h3>
+
+<p>Each DreamFactory's service has a corresponding interface that exposes all functions you could find in Swagger definition. Some functions, however, were split and some were reduced to remain reasonable and consistent to .NET users.</p>
+
+<p>The service instances are created with <code>IRestContext.Factory</code> methods:</p>
+
+<div class="highlight highlight-source-cs"><pre>    IRestContext context = <span class="pl-k">new</span> RestContext(BaseAddress);
+    IUserApi userApi = context.Factory.CreateUserApi();
+    Session session = <span class="pl-k">await</span> userApi.LoginAsync(<span class="pl-s"><span class="pl-pds">"</span>demo<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>api_key<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>user@mail.com<span class="pl-pds">"</span></span>, <span class="pl-s"><span class="pl-pds">"</span>qwerty<span class="pl-pds">"</span></span>);
+    Console.WriteLine(<span class="pl-s"><span class="pl-pds">"</span>Logged in as {0}<span class="pl-pds">"</span></span>, session.display_name);</pre></div>
+
+<p>Specify service name for creating an interface to a named service:</p>
+
+<div class="highlight highlight-source-cs"><pre>    IRestContext context = <span class="pl-k">new</span> RestContext(BaseAddress);
+    IFilesApi filesApi = context.Factory.CreateFilesApi(<span class="pl-s"><span class="pl-pds">"</span>files<span class="pl-pds">"</span></span>);
+    <span class="pl-k">await</span> filesApi.CreateFileAsync(...);</pre></div>
+
+<h4>
+<a id="serialization" class="anchor" href="#serialization" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Serialization</h4>
+
+<p>The API supports pluggable serialization. This SDK comes with the default <code>JsonContentSerializer</code> which is using <a href="http://www.newtonsoft.com/json">Json.NET</a>.
+To use your custom serializer, consider using the other <code>RestContext</code> constructor accepting a user-defined <code>IContentSerializer</code> instance.</p>
+
+<p>By default Json.NET resolves property names as they are defined in the class unless specified otherwise with JsonPropertyAttribute. </p>
+
+<h4>
+<a id="sql-query-parameters" class="anchor" href="#sql-query-parameters" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>SQL query parameters</h4>
+
+<p>Most DreamFactory resources persist in the system database, e.g. Users, Apps, Services. When calling CRUD API methods accessing these resources be prepared to deal with related SQL query parameters. All such APIs accept a <code>SqlQuery</code> class instance. You can populate any fields of this class, but do check swagger contract for the service you about to use. The API implementation will set any non-null fields as query parameters.</p>
+
+<p>Default <code>SqlQuery</code> constructor populates the single property: <em>fields=</em>*. This results in all fields to be read.</p>
+
+<h4>
+<a id="rest-api-versioning" class="anchor" href="#rest-api-versioning" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>REST API versioning</h4>
+
+<p>Supported API versions defined by <code>RestApiVersion</code> enumeration. <code>V2</code> is used by default.
+The SDK uses version for building the complete URL, e.g. /rest for V1 and /api/v2 for V2.
+Note that building the URL is done transparently to the users.</p>
+
+<h4>
+<a id="irestcontext-interface" class="anchor" href="#irestcontext-interface" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>IRestContext interface</h4>
+
+<p>Besides the <code>IRestContext.Factory</code> object which is designed to construct service instances, the interface offers few discovery functions:</p>
+
+<ul>
+<li><code>GetServicesAsync()</code></li>
+<li><code>GetResourcesAsync()</code></li>
+</ul>
+
+<p>See the <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/DiscoveryDemo.cs">demo program</a> for usage details.</p>
+
+<h4>
+<a id="user-api" class="anchor" href="#user-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>User API</h4>
+
+<blockquote>
+<p>See <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory/Api/IUserApi.cs">IUserApi</a> and <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/UserDemo.cs">DEMO</a></p>
+</blockquote>
+
+<p>All API calls require Application-Name header as well as Application-Api-Key to be set and many others require Session-ID header. Here is how these headers are managed by SDK:</p>
+
+<ul>
+<li>Both Application-Name and Application-Api-Key are being set when initializng <code>RestContaxt</code>.</li>
+<li>Session-ID header is set upon <code>IUserApi.LoginAsync()</code> or <code>ISystemApi.LoginAdminAsync()</code> completion,</li>
+<li>Session-ID header gets removed upon <code>IUserApi.LogoutAsync()</code> or <code>ISystemApi.LogoutAdminAsync()</code> completion,</li>
+<li>Session-ID header gets updated if another login is made during <code>ChangePasswordAsync()</code> or <code>ChangeAdminPasswordAsync()</code> call.</li>
+</ul>
+
+<p>To use/set another Application-Name and Application-Api-Key you have to instantiate new <code>RestContaxt</code>.</p>
+
+<h4>
+<a id="customsettings-api" class="anchor" href="#customsettings-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CustomSettings API</h4>
+
+<blockquote>
+<p>See <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory/Api/ICustomSettingsApi.cs">ICustomSettingsApi</a> and <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/CustomSettingsDemo.cs">DEMO</a></p>
+</blockquote>
+
+<p>The API can be created for user and system namespace.
+Please refer to the demo for sample API usage.</p>
+
+<h4>
+<a id="files-api" class="anchor" href="#files-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Files API</h4>
+
+<blockquote>
+<p>See <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory/Api/IFilesApi.cs">IFilesApi</a> and <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/FilesDemo.cs">DEMO</a></p>
+</blockquote>
+
+<p>Summary on supported features:</p>
+
+<ul>
+<li>CRUD operations on folders and files,</li>
+<li>Bulk files upload/download in ZIP format,</li>
+<li>Text and binary files read/write.</li>
+</ul>
+
+<p>Reading/Writing of metadata associated with file entities (folder, file) are not supported.</p>
+
+<h4>
+<a id="database-api" class="anchor" href="#database-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Database API</h4>
+
+<blockquote>
+<p>See <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory/Api/IDatabaseApi.cs">IDatabaseApi</a> and <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/DatabaseDemo.cs">DEMO</a></p>
+</blockquote>
+
+<h5>
+<a id="notes-on-schema-management" class="anchor" href="#notes-on-schema-management" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes on schema management</h5>
+
+<p>To simplify <code>TableSchema</code> construction, SDK offers <code>TableSchemaBuilder</code> class that implement Code First approach:</p>
+
+<div class="highlight highlight-source-cs"><pre>    <span class="pl-c">// Your custom POCO</span>
+    <span class="pl-k">class</span> <span class="pl-en">StaffRecord</span>
+    {
+        <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">Uid</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+        <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-en">FirstName</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+        <span class="pl-k">public</span> <span class="pl-k">string</span> <span class="pl-en">LastName</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+        <span class="pl-k">public</span> <span class="pl-k">int</span> <span class="pl-en">Age</span> { <span class="pl-k">get</span>; <span class="pl-k">set</span>; }
+    }
+
+    <span class="pl-c">// Create tabe schema from StaffRecord type</span>
+    ITableSchemaBuilder builder = <span class="pl-k">new</span> TableSchemaBuilder();
+    builder.WithName(TableName).WithFieldsFrom&lt;StaffRecord&gt;().WithKeyField(<span class="pl-s"><span class="pl-pds">"</span>uid<span class="pl-pds">"</span></span>).Build();</pre></div>
+
+<p>For more advanced scenarios and relationship building you should build up your own TableSchema object:</p>
+
+<div class="highlight highlight-source-cs"><pre>    TableSchema schema = <span class="pl-k">new</span> TableSchema();
+    schema.Name = <span class="pl-s"><span class="pl-pds">"</span>&lt;table_name&gt;<span class="pl-pds">"</span></span>;
+    schema.Field = <span class="pl-k">new</span> List&lt;FieldSchema&gt;
+    {
+        <span class="pl-c">// fields...</span>
+        <span class="pl-k">new</span> FieldSchema
+        {
+            Name = <span class="pl-s"><span class="pl-pds">"</span>&lt;foreign_key_column_name&gt;<span class="pl-pds">"</span></span>,
+            Type = <span class="pl-s"><span class="pl-pds">"</span>reference<span class="pl-pds">"</span></span>,
+            AllowNull = <span class="pl-c1">false</span>,
+            RefTable = <span class="pl-s"><span class="pl-pds">"</span>&lt;related_table_name&gt;<span class="pl-pds">"</span></span>,
+            RefFields = <span class="pl-s"><span class="pl-pds">"</span>&lt;related_table_column_name&gt;<span class="pl-pds">"</span></span>
+        },
+        <span class="pl-c">// more fields...</span>
+    };
+
+    <span class="pl-k">await</span> databaseApi.CreateTableAsync(staffSchema);</pre></div>
+
+<p>API does not offer schema operations on dedicated fields. Use <code>UpdateTableAsync</code> method to update any table's schema.</p>
+
+<h5>
+<a id="notes-on-table-records-operations" class="anchor" href="#notes-on-table-records-operations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes on table records operations</h5>
+
+<ul>
+<li>Input are user-defined POCO classes that must match the corresponding table's schema;</li>
+<li>Output is instance of <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory/Model/Database/DatabaseResourceWrapper.cs">DatabaseResourceWrapper</a> containing records and metadata if it was requested.</li>
+</ul>
+
+<h5>
+<a id="notes-on-stored-proceduresfunctions" class="anchor" href="#notes-on-stored-proceduresfunctions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Notes on stored procedures/functions</h5>
+
+<p>When calling a stored procedure or function, some overloads use a collection of <code>StoreProcParams</code> instances. To simplify creating such a collection, consider using <code>StoreProcParamsBuilder</code> class.
+When response (or return values) is expected, a user must define <code>TStoredProcResponse</code> POCO that shall have fields for OUT-parameters and for wrapper.
+It's recommended to read the technical notes on stored procedures: <a href="https://github.com/dreamfactorysoftware/dsp-core/wiki/SQL-Stored-Procedures">https://github.com/dreamfactorysoftware/dsp-core/wiki/SQL-Stored-Procedures</a></p>
+
+<h4>
+<a id="email-api" class="anchor" href="#email-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Email API</h4>
+
+<blockquote>
+<p>See <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory/Api/IEmailApi.cs">IEmailApi</a> and <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/EmailDemo.cs">DEMO</a></p>
+</blockquote>
+
+<p>Sending an email will require <code>EmailRequest</code> object to be built.
+For an advanced use, construct this object manually by providing all essential information.
+For a simple use, consider using <code>EmailRequestBuilder</code> class that lets you building a request in few simple steps:</p>
+
+<div class="highlight highlight-source-cs"><pre>EmailRequest request = <span class="pl-k">new</span> EmailRequestBuilder()
+                            .AddTo(<span class="pl-s"><span class="pl-pds">"</span>inbox@mail.com<span class="pl-pds">"</span></span>)
+                            .WithSubject(<span class="pl-s"><span class="pl-pds">"</span>Hello<span class="pl-pds">"</span></span>)
+                            .WithBody(<span class="pl-s"><span class="pl-pds">"</span>Hello, world!<span class="pl-pds">"</span></span>)
+                            .Build();</pre></div>
+
+<h4>
+<a id="system-api" class="anchor" href="#system-api" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>System API</h4>
+
+<blockquote>
+<p>See <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory/Api/ISystemApi.cs">ISystemApi</a> and <a href="https://github.com/dreamfactorysoftware/.net-sdk/blob/master/DreamFactory.Demo/Demo/SystemDemo.cs">DEMO</a></p>
+</blockquote>
+
+<h5>
+<a id="current-limitations" class="anchor" href="#current-limitations" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Current limitations</h5>
+
+<ul>
+<li>Reading/writing of metadata related to system records are not supported.</li>
+<li>Some related entities are not retrieved (see related query parameter).</li>
+<li>Some related entities are retrieved as objects and are not strongly typed.</li>
+<li>Some related entities that are strongly typed do not have any properties.</li>
+</ul>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
